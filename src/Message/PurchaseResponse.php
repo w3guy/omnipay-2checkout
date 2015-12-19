@@ -52,6 +52,7 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
 
     public function getRedirectData()
     {
+        return;
     }
 
     public function getTransactionReference()

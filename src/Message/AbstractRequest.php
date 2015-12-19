@@ -68,17 +68,4 @@ abstract class AbstractRequest extends BaseAbstractRequest
     {
         return $this->setParameter('secretWord', $value);
     }
-
-    public function sendData($data)
-    {
-        $url = $this->getEndpoint().'?'.http_build_query($data, '', '&');
-        $httpResponse = $this->httpClient->get($url)->send();
-
-        return $this->createResponse($httpResponse->getBody());
-    }
-
-    protected function getEndpoint()
-    {
-        return $this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint;
-    }
 }

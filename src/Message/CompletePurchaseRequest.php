@@ -28,11 +28,11 @@ class CompletePurchaseRequest extends PurchaseRequest
         }
 
         $key = md5($this->getSecretWord().$this->getAccountNumber().$orderNo.$orderAmount);
-        if (strtolower($this->httpRequest->query->get('key')) !== $key) {
+        if (strtolower($this->httpRequest->$request_type->get('key')) !== $key) {
             throw new InvalidResponseException('Invalid key');
         }
 
-        return $this->httpRequest->request->all();
+        return $this->httpRequest->$request_type->all();
     }
 
     public function sendData($data)

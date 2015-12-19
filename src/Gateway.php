@@ -20,7 +20,7 @@ class Gateway extends AbstractGateway
             'accountNumber' => '',
             'secretWord' => '',
             // if true, transaction with the live checkout URL will be a demo sale and card won't be charged.
-            'demo' => false,
+            'demoMode' => false,
             'testMode' => false,
         );
     }
