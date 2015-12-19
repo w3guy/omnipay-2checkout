@@ -1,0 +1,43 @@
+{
+    "name": "collizo4sky/omnipay-2checkout",
+    "description": "2Checkout driver for the Omnipay payment processing library",
+    "keywords": [
+        "omnipay",
+        "2checkout"
+    ],
+    "homepage": "https://github.com/collizo4sky/omnipay-2checkout",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Agbonghama Collins",
+            "email": "me@w3guy.com",
+            "homepage": "http://w3guy.com"
+        }
+    ],
+    "require": {
+        "php" : ">=5.3.0",
+        "omnipay/common": "~2.0"
+    },
+    "require-dev": {
+        "omnipay/tests": "~2.0",
+        "scrutinizer/ocular": "~1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Omnipay\\TwoCheckoutPlus\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "League\\Skeleton\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
