@@ -26,6 +26,7 @@ script:
 after_script:
   - php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover
   - vendor/bin/coveralls -v
-  addons:
+
+addons:
       code_climate:
           repo_token: a6822f9c6a59e02665b7b69aec43d9db13a9ca476d6460aa4bd8118d16bd6804
