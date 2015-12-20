@@ -28,5 +28,5 @@ after_script:
   - vendor/bin/coveralls -v
 
 addons:
-      code_climate:
-          repo_token: a6822f9c6a59e02665b7b69aec43d9db13a9ca476d6460aa4bd8118d16bd6804
+    code_climate:
+        repo_token: a6822f9c6a59e02665b7b69aec43d9db13a9ca476d6460aa4bd8118d16bd6804
