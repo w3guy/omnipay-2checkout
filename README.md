@@ -5,8 +5,6 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/collizo4sky/omnipay-2checkout.svg?style=flat-square)](https://packagist.org/packages/collizo4sky/omnipay-2checkout)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/collizo4sky/omnipay-2checkout/master.svg?style=flat-square)](https://travis-ci.org/collizo4sky/omnipay-2checkout)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/collizo4sky/omnipay-2checkout.svg?style=flat-square)](https://scrutinizer-ci.com/g/collizo4sky/omnipay-2checkout/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/collizo4sky/omnipay-2checkout.svg?style=flat-square)](https://scrutinizer-ci.com/g/collizo4sky/omnipay-2checkout)
 [![Total Downloads](https://img.shields.io/packagist/dt/collizo4sky/omnipay-2checkout.svg?style=flat-square)](https://packagist.org/packages/collizo4sky/omnipay-2checkout)
 
 
