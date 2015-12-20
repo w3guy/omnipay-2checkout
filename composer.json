@@ -20,8 +20,7 @@
         "satooshi/php-coveralls": "^0.7.1"
     },
     "require-dev": {
-        "omnipay/tests": "~2.0",
-        "scrutinizer/ocular": "~1.1"
+        "omnipay/tests": "~2.0"
     },
     "autoload": {
         "psr-4": {
