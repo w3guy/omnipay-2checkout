@@ -3,3 +3,5 @@ composer.lock
 vendor
 build
 sandbox.php
+.phpstorm.meta.php
+complete.php
