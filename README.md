@@ -18,7 +18,7 @@ PSRs you support to avoid any confusion with users and contributors.
 
 ## Install
 
-Via Composer
+Via Composer (Not yet available)
 
 ``` bash
 $ composer require collizo4sky/omnipay-2checkout

@@ -5,7 +5,7 @@ namespace Omnipay\TwoCheckoutPlus;
 use Omnipay\Common\AbstractGateway;
 
 /**
- * Skeleton Gateway.
+ * 2Checkout Gateway.
  */
 class Gateway extends AbstractGateway
 {
