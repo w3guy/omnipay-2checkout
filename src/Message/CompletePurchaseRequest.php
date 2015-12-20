@@ -13,7 +13,8 @@ class CompletePurchaseRequest extends PurchaseRequest
     {
         // if 2co didn't send a POST body parameters, use sent GET string parameters instead
         // Note: when redirect is set to Header redirect in 2co dashboard, the transaction parameters are GET query string.
-        if (empty($this->httpRequest->request->all())) {
+        $fetchPostBody = $this->httpRequest->request->all();
+        if (empty($fetchPostBody)) {
             $request_type = 'query';
         } else {
             $request_type = 'request';
