@@ -24,15 +24,15 @@ class GatewayTest extends GatewayTestCase
         $this->gateway->setCoupon('BlackFriday');
         $this->gateway->setCart(array(
             array(
-                'type'       => 'product',
-                'name'       => 'Product 1',
-                'description'       => 'Description of product 1',
-                'quantity'   => 2,
-                'price'      => 22,
-                'tangible'   => 'N',
-                'product_id' => 12345,
-                'recurrence' => '1 Week',
-                'duration' => '1 Year',
+                'type'        => 'product',
+                'name'        => 'Product 1',
+                'description' => 'Description of product 1',
+                'quantity'    => 2,
+                'price'       => 22,
+                'tangible'    => 'N',
+                'product_id'  => 12345,
+                'recurrence'  => '1 Week',
+                'duration'    => '1 Year',
                 'startup_fee' => '5',
             ),
             array(
@@ -77,8 +77,8 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame(false, $request->isSuccessful());
         $this->assertSame(true, $request->isRedirect());
         $this->assertSame('GET', $request->getRedirectMethod());
+        $this->assertSame('https://sandbox.2checkout.com/checkout/purchase', $request->getEndPoint());
         $this->assertNull($request->getRedirectData());
-
     }
 
 
@@ -88,8 +88,8 @@ class GatewayTest extends GatewayTestCase
         $this->getHttpRequest()->initialize(
             array(
                 'order_number' => 1234,
-                'total' => 20,
-                'key' => $this->gateway->getTestMode() ? '21937BDC2F33AF28503800677DE7C4F8' : '686C451E66D5766DEC3A1E74379C7BAD',
+                'total'        => 20,
+                'key'          => $this->gateway->getTestMode() ? '21937BDC2F33AF28503800677DE7C4F8' : '686C451E66D5766DEC3A1E74379C7BAD',
             )
         );
 
@@ -105,8 +105,8 @@ class GatewayTest extends GatewayTestCase
             array(),
             array(
                 'order_number' => 1234,
-                'total' => 20,
-                'key' => $this->gateway->getTestMode() ? '21937BDC2F33AF28503800677DE7C4F8' : '686C451E66D5766DEC3A1E74379C7BAD',
+                'total'        => 20,
+                'key'          => $this->gateway->getTestMode() ? '21937BDC2F33AF28503800677DE7C4F8' : '686C451E66D5766DEC3A1E74379C7BAD',
             )
         );
 
@@ -124,8 +124,8 @@ class GatewayTest extends GatewayTestCase
         $this->getHttpRequest()->initialize(
             array(
                 'order_number' => 1234,
-                'total' => 20,
-                'key' => 'BadMD5harsh',
+                'total'        => 20,
+                'key'          => 'BadMD5harsh',
             )
         );
 
