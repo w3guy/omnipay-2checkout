@@ -6,6 +6,7 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/collizo4sky/omnipay-2checkout/master.svg?style=flat-square)](https://travis-ci.org/collizo4sky/omnipay-2checkout)
 [![Coverage Status](https://coveralls.io/repos/collizo4sky/omnipay-2checkout/badge.svg?branch=master&service=github)](https://coveralls.io/github/collizo4sky/omnipay-2checkout?branch=master)
+[![Code Climate](https://codeclimate.com/github/Collizo4sky/omnipay-wepay/badges/gpa.svg)](https://codeclimate.com/github/Collizo4sky/omnipay-wepay)
 [![Total Downloads](https://img.shields.io/packagist/dt/collizo4sky/omnipay-2checkout.svg?style=flat-square)](https://packagist.org/packages/collizo4sky/omnipay-2checkout)
 
 
