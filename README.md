@@ -7,6 +7,7 @@
 [![Build Status](https://img.shields.io/travis/collizo4sky/omnipay-2checkout/master.svg?style=flat-square)](https://travis-ci.org/collizo4sky/omnipay-2checkout)
 [![Coverage Status](https://coveralls.io/repos/collizo4sky/omnipay-2checkout/badge.svg?branch=master&service=github)](https://coveralls.io/github/collizo4sky/omnipay-2checkout?branch=master)
 [![Code Climate](https://codeclimate.com/github/collizo4sky/omnipay-2checkout/badges/gpa.svg)](https://codeclimate.com/github/collizo4sky/omnipay-2checkout)
+[![Dependency Status](https://www.versioneye.com/user/projects/56790f2210799700300013b8/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56790f2210799700300013b8)
 [![Total Downloads](https://img.shields.io/packagist/dt/collizo4sky/omnipay-2checkout.svg?style=flat-square)](https://packagist.org/packages/collizo4sky/omnipay-2checkout)
 
 
@@ -26,6 +27,7 @@ $ composer require collizo4sky/omnipay-2checkout
 The following gateways are provided by this package:
 
  * TwoCheckoutPlus
+ * TwoCheckoutPlus_Token
 
 For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay) repository.
 
