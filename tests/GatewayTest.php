@@ -3,7 +3,6 @@
 namespace Omnipay\TwoCheckoutPlus;
 
 use Omnipay\Tests\GatewayTestCase;
-use Omnipay\Common\CreditCard;
 
 class GatewayTest extends GatewayTestCase
 {

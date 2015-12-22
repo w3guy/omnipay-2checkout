@@ -19,52 +19,8 @@ class TokenGateway extends AbstractGateway
         return array(
             'accountNumber' => '',
             'privateKey' => '',
-            'transactionId' => '',
-            'token' => '',
-            'currency' => 'USD',
-            'amount' => '',
             'testMode' => false,
         );
-    }
-
-    public function getCart()
-    {
-        return $this->getParameter('cart');
-    }
-
-    public function setCart($value)
-    {
-        return $this->setParameter('cart', $value);
-    }
-
-    public function getDemoMode()
-    {
-        return $this->getParameter('demoMode');
-    }
-
-    public function setDemoMode($value)
-    {
-        return $this->setParameter('demoMode', $value);
-    }
-
-    public function getLanguage()
-    {
-        return $this->getParameter('language');
-    }
-
-    public function setLanguage($value)
-    {
-        return $this->setParameter('language', $value);
-    }
-
-    public function getCoupon()
-    {
-        return $this->getParameter('coupon');
-    }
-
-    public function setCoupon($value)
-    {
-        return $this->setParameter('coupon', $value);
     }
 
     public function getAccountNumber()
@@ -75,16 +31,6 @@ class TokenGateway extends AbstractGateway
     public function setAccountNumber($value)
     {
         return $this->setParameter('accountNumber', $value);
-    }
-
-    public function getSecretWord()
-    {
-        return $this->getParameter('secretWord');
-    }
-
-    public function setSecretWord($value)
-    {
-        return $this->setParameter('secretWord', $value);
     }
 
     public function getPrivateKey()
