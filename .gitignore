@@ -5,3 +5,4 @@ build
 sandbox.php
 .phpstorm.meta.php
 complete.php
+sandboxToken.php
