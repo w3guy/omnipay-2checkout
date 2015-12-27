@@ -18,7 +18,7 @@ class TokenPurchaseResponseTest extends TestCase
         $this->assertFalse($response->isRedirect());
         $this->assertNull($response->getCode());
         $this->assertNull($response->getMessage());
-        $this->assertSame('205182114564', $response->getTransactionReference());
+        $this->assertSame('205182114555', $response->getTransactionReference());
     }
 
     public function testFailure()

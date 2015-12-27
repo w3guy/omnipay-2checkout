@@ -55,7 +55,8 @@ class TokenGatewayTest extends GatewayTestCase
         $this->assertFalse($response->isRedirect());
         $this->assertNull($response->getCode());
         $this->assertNull($response->getMessage());
-        $this->assertSame('205182114564', $response->getTransactionReference());
+        $this->assertSame('205182114555', $response->getTransactionReference());
+        $this->assertSame('123', $response->getTransactionId());
 
         $response = $this->gateway->purchase($this->options)->send();
 
@@ -64,5 +65,6 @@ class TokenGatewayTest extends GatewayTestCase
         $this->assertSame('602', $response->getCode());
         $this->assertSame('Payment Authorization Failed:  Please verify your Credit Card details are entered correctly and try again, or try another payment method.', $response->getMessage());
         $this->assertNull($response->getTransactionReference());
+        $this->assertNull($response->getTransactionId());
     }
 }
