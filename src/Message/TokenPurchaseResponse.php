@@ -34,6 +34,11 @@ class TokenPurchaseResponse extends AbstractResponse implements ResponseInterfac
 
     public function getTransactionReference()
     {
-        return isset($this->data['response']['transactionId']) ? $this->data['response']['transactionId'] : null;
+        return isset($this->data['response']['orderNumber']) ? $this->data['response']['orderNumber'] : null;
+    }
+
+    public function getTransactionId()
+    {
+        return isset($this->data['response']['merchantOrderId']) ? $this->data['response']['merchantOrderId'] : null;
     }
 }
