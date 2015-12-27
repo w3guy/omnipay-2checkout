@@ -86,15 +86,17 @@ class GatewayTest extends GatewayTestCase
         // mock / set a test MD5 hash, total order amount and order number
         $this->getHttpRequest()->initialize(
             array(
-                'order_number' => 1234,
-                'total'        => 20,
-                'key'          => $this->gateway->getTestMode() ? '21937BDC2F33AF28503800677DE7C4F8' : '686C451E66D5766DEC3A1E74379C7BAD',
+                'order_number'      => 1234,
+                'merchant_order_id' => 56789,
+                'total'             => 20,
+                'key'               => $this->gateway->getTestMode() ? '21937BDC2F33AF28503800677DE7C4F8' : '686C451E66D5766DEC3A1E74379C7BAD',
             )
         );
 
         $request = $this->gateway->completePurchase($this->options)->send();
         $this->assertSame(true, $request->isSuccessful());
         $this->assertSame(1234, $request->getTransactionReference());
+        $this->assertSame(56789, $request->getTransactionId());
     }
 
     public function testCompletePurchaseWithPOSTParameters()
@@ -103,14 +105,16 @@ class GatewayTest extends GatewayTestCase
         $this->getHttpRequest()->initialize(
             array(),
             array(
-                'order_number' => 1234,
-                'total'        => 20,
-                'key'          => $this->gateway->getTestMode() ? '21937BDC2F33AF28503800677DE7C4F8' : '686C451E66D5766DEC3A1E74379C7BAD',
+                'order_number'      => 1234,
+                'merchant_order_id' => 56789,
+                'total'             => 20,
+                'key'               => $this->gateway->getTestMode() ? '21937BDC2F33AF28503800677DE7C4F8' : '686C451E66D5766DEC3A1E74379C7BAD',
             )
         );
 
         $request = $this->gateway->completePurchase($this->options)->send();
         $this->assertSame(true, $request->isSuccessful());
+        $this->assertSame(1234, $request->getTransactionReference());
         $this->assertSame(1234, $request->getTransactionReference());
     }
 
