@@ -2,8 +2,8 @@
 
 namespace Omnipay\TwoCheckoutPlus\Message;
 
-use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\NotificationInterface;
+use Omnipay\Common\Message\AbstractResponse;
 
 class FraudStatusChangeResponse extends AbstractResponse implements NotificationInterface
 {
