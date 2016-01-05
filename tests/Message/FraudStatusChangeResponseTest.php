@@ -15,6 +15,7 @@ class FraudStatusChangeResponseTest extends TestCase
 
         $this->assertFalse($response->isSuccessful());
         $this->assertSame('4742525399', $response->getTransactionReference());
+        $this->assertSame('test123', $response->getTransactionId());
         $this->assertSame('FRAUD_STATUS_CHANGED', $response->notificationType());
         $this->assertSame(NotificationInterface::STATUS_FAILED, $response->getTransactionStatus());
         $this->assertSame($data, $response->getMessage());

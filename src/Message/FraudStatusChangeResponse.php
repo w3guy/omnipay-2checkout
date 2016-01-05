@@ -27,6 +27,16 @@ class FraudStatusChangeResponse extends AbstractResponse implements Notification
     }
 
     /**
+     * Order or transaction ID.
+     *
+     * @return mixed
+     */
+    public function getTransactionId()
+    {
+        return $this->data['vendor_order_id'];
+    }
+
+    /**
      * Get transaction status.
      *
      * @return string|null
