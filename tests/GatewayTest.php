@@ -140,7 +140,7 @@ class GatewayTest extends GatewayTestCase
 
         $this->getHttpRequest()->initialize(
             array(),
-            $this->getMockHttpResponse('FraudChangeNotification.txt')->json()
+            $this->getMockHttpResponse('FraudChangeNotificationFail.txt')->json()
         );
 
         $response = $this->gateway->acceptNotification()->send();

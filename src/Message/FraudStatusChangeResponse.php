@@ -52,10 +52,10 @@ class FraudStatusChangeResponse extends AbstractResponse implements Notification
             $hashInvoice = $this->data['invoice_id'];
             $StringToHash = strtoupper(md5($hashOrder.$hashSid.$hashInvoice.$hashSecretWord));
 
-            if ($StringToHash != $this->data['md5_hash']) {
-                $status = self::STATUS_FAILED;
-            } else {
+            if ($this->data['fraud_status'] == 'pass' && $StringToHash == $this->data['md5_hash']) {
                 $status = self::STATUS_COMPLETED;
+            } else {
+                $status = self::STATUS_FAILED;
             }
 
             return $status;

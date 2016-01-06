@@ -18,7 +18,7 @@ class FraudStatusChangeRequestTest extends TestCase
                                         // directly passing an array of the POSTed data would do but to prevent
                                         // duplicate array in test, i made it seem like an API response then
                                         // get the response as an array using json() method.
-                                        $this->getMockHttpResponse('FraudChangeNotification.txt')->json()
+                                        $this->getMockHttpResponse('FraudChangeNotificationFail.txt')->json()
                                     )
                                 )
                                 ->setMethods(null)
