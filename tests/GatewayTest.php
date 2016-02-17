@@ -147,7 +147,7 @@ class GatewayTest extends GatewayTestCase
 
         $this->assertFalse($response->isSuccessful());
         $this->assertSame('4742525399', $response->getTransactionReference());
-        $this->assertSame('FRAUD_STATUS_CHANGED', $response->notificationType());
-        $this->assertSame(NotificationInterface::STATUS_FAILED, $response->getTransactionStatus());
+        $this->assertSame('FRAUD_STATUS_CHANGED', $response->getNotificationType());
+        $this->assertSame(true, $response->getTransactionStatus());
     }
 }

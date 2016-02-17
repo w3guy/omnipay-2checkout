@@ -102,10 +102,10 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @return Message\FraudStatusChangeRequest
+     * @return Message\NotificationRequest
      */
     public function acceptNotification(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\TwoCheckoutPlus\Message\FraudStatusChangeRequest', $parameters);
+        return $this->createRequest('\Omnipay\TwoCheckoutPlus\Message\NotificationRequest', $parameters);
     }
 }

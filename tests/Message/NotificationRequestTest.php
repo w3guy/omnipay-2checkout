@@ -3,7 +3,7 @@ namespace Omnipay\TwoCheckoutPlus\Message;
 
 use Omnipay\Tests\TestCase;
 
-class FraudStatusChangeRequestTest extends TestCase
+class NotificationRequestTest extends TestCase
 {
     private $request;
 
@@ -24,7 +24,7 @@ class FraudStatusChangeRequestTest extends TestCase
                                 ->setMethods(null)
                                 ->getMock();
 
-        $this->request = new FraudStatusChangeRequest($this->getHttpClient(), $mockHttpRequest);
+        $this->request = new NotificationRequest($this->getHttpClient(), $mockHttpRequest);
         $this->request->setAccountNumber('901290261');
         $this->request->setSecretWord('MzBjODg5YTUtNzcwMS00N2NlLWFkODMtNzQ2YzllZWRjMzBj');
     }
@@ -43,7 +43,7 @@ class FraudStatusChangeRequestTest extends TestCase
     {
         $data     = $this->request->getData();
         $response = $this->request->sendData($data);
-        $this->assertSame('Omnipay\TwoCheckoutPlus\Message\FraudStatusChangeResponse', get_class($response));
+        $this->assertSame('Omnipay\TwoCheckoutPlus\Message\NotificationResponse', get_class($response));
     }
 
 }

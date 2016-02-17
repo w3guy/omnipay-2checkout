@@ -2,7 +2,7 @@
 
 namespace Omnipay\TwoCheckoutPlus\Message;
 
-class FraudStatusChangeRequest extends AbstractRequest
+class NotificationRequest extends AbstractRequest
 {
     public function getData()
     {
@@ -15,6 +15,6 @@ class FraudStatusChangeRequest extends AbstractRequest
 
     public function sendData($data)
     {
-        return new FraudStatusChangeResponse($this, $data);
+        return new NotificationResponse($this, $data);
     }
 }
