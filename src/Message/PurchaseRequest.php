@@ -53,16 +53,16 @@ class PurchaseRequest extends AbstractRequest
                 $data['li_'.$i.'_product_id'] = $item['product_id'];
             }
             if (isset($item['description'])) {
-                $data['li_'.$i.'description'] = $item['description'];
+                $data['li_'.$i.'_description'] = $item['description'];
             }
             if (isset($item['recurrence'])) {
-                $data['li_'.$i.'recurrence'] = $item['recurrence'];
+                $data['li_'.$i.'_recurrence'] = $item['recurrence'];
             }
             if (isset($item['duration'])) {
-                $data['li_'.$i.'duration'] = $item['duration'];
+                $data['li_'.$i.'_duration'] = $item['duration'];
             }
             if (isset($item['startup_fee'])) {
-                $data['li_'.$i.'startup_fee'] = $item['startup_fee'];
+                $data['li_'.$i.'_startup_fee'] = $item['startup_fee'];
             }
 
             ++$i;
