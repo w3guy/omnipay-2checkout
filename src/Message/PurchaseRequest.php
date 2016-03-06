@@ -46,9 +46,11 @@ class PurchaseRequest extends AbstractRequest
             $data['li_'.$i.'_name'] = $item['name'];
             $data['li_'.$i.'_price'] = $item['price'];
             $data['li_'.$i.'_quantity'] = $item['quantity'];
-            $data['li_'.$i.'_tangible'] = $item['tangible'];
 
             // optional item/product parameters
+            if (isset($item['tangible'])) {
+                $data['li_'.$i.'_tangible'] = $item['tangible'];
+            }
             if (isset($item['product_id'])) {
                 $data['li_'.$i.'_product_id'] = $item['product_id'];
             }
