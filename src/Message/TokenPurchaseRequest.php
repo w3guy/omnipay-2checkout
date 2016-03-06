@@ -14,12 +14,23 @@ class TokenPurchaseRequest extends AbstractRequest
     protected $liveEndpoint = 'https://www.2checkout.com/checkout/api/1/';
     protected $testEndpoint = 'https://sandbox.2checkout.com/checkout/api/1/';
 
+    /**
+     * Build endpoint.
+     *
+     * @return string
+     */
     public function getEndpoint()
     {
         $endpoint = $this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint;
 
         return $endpoint.$this->getAccountNumber().'/rs/authService';
     }
+
+    /**
+     * HTTP request headers.
+     *
+     * @return array
+     */
     public function getRequestHeaders()
     {
         return array(
@@ -28,6 +39,11 @@ class TokenPurchaseRequest extends AbstractRequest
         );
     }
 
+    /**
+     * @return array
+     *
+     * @throws \Omnipay\Common\Exception\InvalidRequestException
+     */
     public function getData()
     {
         $this->validate('accountNumber', 'privateKey', 'token', 'amount', 'transactionId');
@@ -50,13 +66,17 @@ class TokenPurchaseRequest extends AbstractRequest
             $data['billingAddr']['email'] = $this->getCard()->getEmail();
             $data['billingAddr']['country'] = $this->getCard()->getCountry();
             $data['billingAddr']['phoneNumber'] = $this->getCard()->getPhone();
-            // add this if PR (https://github.com/thephpleague/omnipay-common/pull/71) is merged
-            //$data['billingAddr']['phoneExt'] = $this->getCard()->getPhoneExtension();
+            $data['billingAddr']['phoneExt'] = $this->getCard()->getPhoneExtension();
         }
 
         return $data;
     }
 
+    /**
+     * @param mixed $data
+     *
+     * @return TokenPurchaseResponse
+     */
     public function sendData($data)
     {
         try {

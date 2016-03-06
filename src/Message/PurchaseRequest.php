@@ -83,6 +83,11 @@ class PurchaseRequest extends AbstractRequest
         return $data;
     }
 
+    /**
+     * @param mixed $data
+     *
+     * @return PurchaseResponse
+     */
     public function sendData($data)
     {
         return $this->response = new PurchaseResponse($this, $data);

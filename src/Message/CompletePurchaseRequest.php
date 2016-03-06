@@ -9,6 +9,13 @@ use Omnipay\Common\Exception\InvalidResponseException;
  */
 class CompletePurchaseRequest extends PurchaseRequest
 {
+    /**
+     * {@inheritdoc}
+     *
+     * @return mixed
+     *
+     * @throws InvalidResponseException
+     */
     public function getData()
     {
         // if 2co didn't send a POST body parameters, use sent GET string parameters instead.
@@ -36,6 +43,13 @@ class CompletePurchaseRequest extends PurchaseRequest
         return $this->httpRequest->$request_type->all();
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @param mixed $data
+     *
+     * @return CompletePurchaseResponse
+     */
     public function sendData($data)
     {
         return $this->response = new CompletePurchaseResponse($this, $data);

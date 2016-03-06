@@ -23,21 +23,45 @@ class TokenGateway extends AbstractGateway
         );
     }
 
+    /**
+     * Getter: 2Checkout account number.
+     *
+     * @return string
+     */
     public function getAccountNumber()
     {
         return $this->getParameter('accountNumber');
     }
 
+    /**
+     * Setter: 2Checkout account number.
+     *
+     * @param string $value
+     *
+     * @return $this
+     */
     public function setAccountNumber($value)
     {
         return $this->setParameter('accountNumber', $value);
     }
 
+    /**
+     * Getter: 2Checkout private key.
+     *
+     * @return string
+     */
     public function getPrivateKey()
     {
         return $this->getParameter('privateKey');
     }
 
+    /**
+     * Setter: 2Checkout private key.
+     *
+     * @param $value
+     *
+     * @return $this
+     */
     public function setPrivateKey($value)
     {
         return $this->setParameter('privateKey', $value);
