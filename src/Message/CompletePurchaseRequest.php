@@ -31,7 +31,7 @@ class CompletePurchaseRequest extends PurchaseRequest
         $orderAmount = $this->httpRequest->$request_type->get('total');
 
         // strange exception specified by 2Checkout
-        if ($this->getTestMode()) {
+        if ($this->getDemoMode()) {
             $orderNo = '1';
         }
 
