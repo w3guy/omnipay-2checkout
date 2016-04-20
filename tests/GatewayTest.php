@@ -21,6 +21,7 @@ class GatewayTest extends GatewayTestCase
         $this->gateway->setTestMode(true);
         $this->gateway->setDemoMode(true);
         $this->gateway->setLanguage('fr');
+        $this->gateway->setPurchaseStep('payment-method');
         $this->gateway->setCoupon('BlackFriday');
         $this->gateway->setCart(array(
             array(
@@ -57,6 +58,7 @@ class GatewayTest extends GatewayTestCase
         $cart = $this->gateway->getCart();
         $this->assertSame('901290261', $this->gateway->getAccountNumber());
         $this->assertSame('MzBjODg5YTUtNzcwMS00N2NlLWFkODMtNzQ2YzllZWRjMzBj', $this->gateway->getSecretWord());
+        $this->assertSame('payment-method', $this->gateway->getPurchaseStep());
         $this->assertSame('BlackFriday', $this->gateway->getCoupon());
         $this->assertSame('fr', $this->gateway->getLanguage());
         $this->assertTrue($this->gateway->getTestMode());

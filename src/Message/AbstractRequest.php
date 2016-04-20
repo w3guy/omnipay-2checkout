@@ -39,6 +39,16 @@ abstract class AbstractRequest extends BaseAbstractRequest
         return $this->setParameter('language', $value);
     }
 
+    public function getPurchaseStep()
+    {
+        return $this->getParameter('purchaseStep');
+    }
+
+    public function setPurchaseStep($value)
+    {
+        return $this->setParameter('purchaseStep', $value);
+    }
+
     public function getCoupon()
     {
         return $this->getParameter('coupon');
