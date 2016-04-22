@@ -29,6 +29,10 @@ class PurchaseRequest extends AbstractRequest
             $data['lang'] = $this->getLanguage();
         }
 
+        if ($this->getPurchaseStep()) {
+            $data['purchase_step'] = $this->getPurchaseStep();
+        }
+
         if ($this->getCoupon()) {
             $data['coupon'] = $this->getCoupon();
         }

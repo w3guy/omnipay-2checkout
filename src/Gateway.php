@@ -119,6 +119,30 @@ class Gateway extends AbstractGateway
     }
 
     /**
+     * Getter: purchase step.
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function getPurchaseStep()
+    {
+        return $this->getParameter('purchaseStep');
+    }
+
+    /**
+     * Setter: purchase step.
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setPurchaseStep($value)
+    {
+        return $this->setParameter('purchaseStep', $value);
+    }
+
+    /**
      * Getter: coupon.
      *
      * @return string
