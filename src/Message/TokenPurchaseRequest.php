@@ -66,7 +66,7 @@ class TokenPurchaseRequest extends AbstractRequest
             $data['billingAddr']['email'] = $this->getCard()->getEmail();
             $data['billingAddr']['country'] = $this->getCard()->getCountry();
             $data['billingAddr']['phoneNumber'] = $this->getCard()->getPhone();
-	    }
+        }
 
         return $data;
     }
