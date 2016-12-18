@@ -9,6 +9,7 @@ use Omnipay\Common\AbstractGateway;
  */
 class TokenGateway extends AbstractGateway
 {
+    
     public function getName()
     {
         return 'TwoCheckoutPlus_Token';
