@@ -23,7 +23,12 @@ class TokenPurchaseRequest extends AbstractRequest
     {
         $endpoint = $this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint;
 
-        return $endpoint.$this->getAccountNumber().'/rs/authService';
+        return $endpoint . $this->getAccountNumber() . '/rs/authService';
+    }
+
+    public function isNotNull($value)
+    {
+        return !is_null($value);
     }
 
     /**
@@ -68,6 +73,19 @@ class TokenPurchaseRequest extends AbstractRequest
             $data['billingAddr']['phoneNumber'] = $this->getCard()->getPhone();
             $data['billingAddr']['phoneExt'] = $this->getCard()->getPhoneExtension();
         }
+
+        if ($this->getCart()) {
+            // remove amount parameter if lineItem attributes / cart is set
+            unset($data['total']);
+
+            $data['lineItems'] = $this->getCart();
+        }
+
+        // remove null values item from $data['billingAddr']
+        $data['billingAddr'] = array_filter($data['billingAddr'], array($this, 'isNotNull'));
+
+        // remove null values item from $data.
+        $data = array_filter($data, array($this, 'isNotNull'));
 
         return $data;
     }

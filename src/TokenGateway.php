@@ -24,6 +24,30 @@ class TokenGateway extends AbstractGateway
     }
 
     /**
+     * Getter: get cart items | Lineitem Attributes.
+     *
+     * @return array
+     */
+    public function getCart()
+    {
+        return $this->getParameter('cart');
+    }
+
+    /**
+     * Array of cart items | Lineitem Attributes.
+     *
+     * @see https://www.2checkout.com/documentation/payment-api/create-sale
+     *
+     * @param array $value
+     *
+     * @return $this
+     */
+    public function setCart($value)
+    {
+        return $this->setParameter('cart', $value);
+    }
+
+    /**
      * Getter: 2Checkout account number.
      *
      * @return string

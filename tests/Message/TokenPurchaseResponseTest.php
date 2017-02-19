@@ -6,8 +6,6 @@ use Omnipay\Tests\TestCase;
 
 class TokenPurchaseResponseTest extends TestCase
 {
-
-
     public function testSuccess()
     {
         $body         = file_get_contents(dirname(dirname(__FILE__)) . '/Mock/TokenPurchaseSuccess.txt');
