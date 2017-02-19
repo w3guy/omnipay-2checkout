@@ -46,29 +46,29 @@ class PurchaseRequest extends AbstractRequest
 
         // Setup Products information
         foreach ($this->getCart() as $item) {
-            $data['li_'.$i.'_type'] = $item['type'];
-            $data['li_'.$i.'_name'] = $item['name'];
-            $data['li_'.$i.'_price'] = $item['price'];
-            $data['li_'.$i.'_quantity'] = $item['quantity'];
+            $data['li_' . $i . '_type'] = $item['type'];
+            $data['li_' . $i . '_name'] = $item['name'];
+            $data['li_' . $i . '_price'] = $item['price'];
+            $data['li_' . $i . '_quantity'] = $item['quantity'];
 
             // optional item/product parameters
             if (isset($item['tangible'])) {
-                $data['li_'.$i.'_tangible'] = $item['tangible'];
+                $data['li_' . $i . '_tangible'] = $item['tangible'];
             }
             if (isset($item['product_id'])) {
-                $data['li_'.$i.'_product_id'] = $item['product_id'];
+                $data['li_' . $i . '_product_id'] = $item['product_id'];
             }
             if (isset($item['description'])) {
-                $data['li_'.$i.'_description'] = $item['description'];
+                $data['li_' . $i . '_description'] = $item['description'];
             }
             if (isset($item['recurrence'])) {
-                $data['li_'.$i.'_recurrence'] = $item['recurrence'];
+                $data['li_' . $i . '_recurrence'] = $item['recurrence'];
             }
             if (isset($item['duration'])) {
-                $data['li_'.$i.'_duration'] = $item['duration'];
+                $data['li_' . $i . '_duration'] = $item['duration'];
             }
             if (isset($item['startup_fee'])) {
-                $data['li_'.$i.'_startup_fee'] = $item['startup_fee'];
+                $data['li_' . $i . '_startup_fee'] = $item['startup_fee'];
             }
 
             ++$i;
@@ -85,6 +85,10 @@ class PurchaseRequest extends AbstractRequest
             $data['phone'] = $this->getCard()->getPhone();
             $data['email'] = $this->getCard()->getEmail();
         }
+
+        $data = array_filter($data, function ($value) {
+            return !is_null($value);
+        });
 
         return $data;
     }
