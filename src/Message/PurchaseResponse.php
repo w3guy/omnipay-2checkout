@@ -20,11 +20,7 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
      */
     public function getEndPoint()
     {
-        if ($this->data['sandbox']) {
-            return $this->testEndpoint;
-        } else {
-            return $this->liveEndpoint;
-        }
+        return empty($this->data['sandbox']) ? $this->liveEndpoint : $this->testEndpoint;
     }
 
     /**
