@@ -209,15 +209,178 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @return Message\PurchaseRequest
+     * Setter: sale ID for use by refund.
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setSaleId($value)
+    {
+        return $this->setParameter('saleId', $value);
+    }
+
+    /**
+     * Getter: sale ID for use by refund.
+     *
+     * @return string
+     */
+    public function getSaleId()
+    {
+        return $this->getParameter('saleId');
+    }
+
+    /**
+     * Setter: sale ID for use by refund.
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setInvoiceId($value)
+    {
+        return $this->setParameter('invoiceId', $value);
+    }
+
+    /**
+     * Getter: sale ID for use by refund.
+     *
+     * @return string
+     */
+    public function getInvoiceId()
+    {
+        return $this->getParameter('invoiceId');
+    }
+
+
+    /**
+     * Getter: admin username for use by refund.
+     *
+     * @return string
+     */
+    public function getAdminUsername()
+    {
+        return $this->getParameter('adminUsername');
+    }
+
+    /**
+     * Setter: admin username for use by refund.
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setAdminUsername($value)
+    {
+        return $this->setParameter('adminUsername', $value);
+    }
+
+    /**
+     * Getter: admin password for use by refund.
+     *
+     * @return string
+     */
+    public function getAdminPassword()
+    {
+        return $this->getParameter('adminPassword');
+    }
+
+
+    /**
+     * Getter: category for use by refund.
+     *
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->getParameter('category');
+    }
+
+    /**
+     * Setter: category for use by refund.
+     *
+     * @param $value
+     *
+     * @return BaseAbstractRequest
+     */
+    public function setCategory($value)
+    {
+        return $this->setParameter('category', $value);
+    }
+
+    /**
+     * Getter: comment for use by refund.
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->getParameter('comment');
+    }
+
+    /**
+     * Setter: category for use by refund.
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setComment($value)
+    {
+        return $this->setParameter('comment', $value);
+    }
+
+    public function getAmount()
+    {
+        return $this->getParameter('amount');
+    }
+
+    public function setAmount($value)
+    {
+        return parent::setParameter('amount', $value);
+    }
+
+    public function getCurrency()
+    {
+        return parent::getCurrency();
+    }
+
+    public function setCurrency($value)
+    {
+        return parent::setCurrency($value);
+    }
+
+    /**
+     * Setter: admin password for use by refund.
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setAdminPassword($value)
+    {
+        return $this->setParameter('adminPassword', $value);
+    }
+
+    /**
+     * @param array $parameters
+     *
+     * @return \Omnipay\Common\Message\AbstractRequest
      */
     public function purchase(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\TwoCheckoutPlus\Message\PurchaseRequest', $parameters);
     }
 
+    public function refund(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\TwoCheckoutPlus\Message\RefundRequest', $parameters);
+    }
+
     /**
-     * @return Message\CompletePurchaseRequest
+     * @param array $parameters
+     *
+     * @return \Omnipay\Common\Message\AbstractRequest
      */
     public function completePurchase(array $parameters = array())
     {
@@ -225,7 +388,9 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @return Message\NotificationRequest
+     * @param array $parameters
+     *
+     * @return \Omnipay\Common\Message\AbstractRequest
      */
     public function acceptNotification(array $parameters = array())
     {

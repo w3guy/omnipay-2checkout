@@ -88,4 +88,156 @@ abstract class AbstractRequest extends BaseAbstractRequest
     {
         return $this->setParameter('privateKey', $value);
     }
+
+    /**
+     * Setter: sale ID for use by refund.
+     *
+     * @param $value
+     *
+     * @return BaseAbstractRequest
+     */
+    public function setSaleId($value)
+    {
+        return $this->setParameter('saleId', $value);
+    }
+
+    /**
+     * Getter: sale ID for use by refund.
+     *
+     * @return string
+     */
+    public function getSaleId()
+    {
+        return $this->getParameter('saleId');
+    }
+
+    /**
+     * Setter: sale ID for use by refund.
+     *
+     * @param $value
+     *
+     * @return BaseAbstractRequest
+     */
+    public function setInvoiceId($value)
+    {
+        return $this->setParameter('invoiceId', $value);
+    }
+
+    /**
+     * Getter: sale ID for use by refund.
+     *
+     * @return string
+     */
+    public function getInvoiceId()
+    {
+        return $this->getParameter('invoiceId');
+    }
+
+    /**
+     * Getter: admin username for use by refund.
+     *
+     * @return string
+     */
+    public function getAdminUsername()
+    {
+        return $this->getParameter('adminUsername');
+    }
+
+    /**
+     * Setter: admin username for use by refund.
+     *
+     * @param $value
+     *
+     * @return BaseAbstractRequest
+     */
+    public function setAdminUsername($value)
+    {
+        return $this->setParameter('adminUsername', $value);
+    }
+
+    /**
+     * Getter: admin password for use by refund.
+     *
+     * @return string
+     */
+    public function getAdminPassword()
+    {
+        return $this->getParameter('adminPassword');
+    }
+
+    /**
+     * Setter: admin password for use by refund.
+     *
+     * @param $value
+     *
+     * @return BaseAbstractRequest
+     */
+    public function setAdminPassword($value)
+    {
+        return $this->setParameter('adminPassword', $value);
+    }
+
+    /**
+     * Getter: category for use by refund.
+     *
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->getParameter('category');
+    }
+
+    /**
+     * Setter: category for use by refund.
+     *
+     * @param $value
+     *
+     * @return BaseAbstractRequest
+     */
+    public function setCategory($value)
+    {
+        return $this->setParameter('category', $value);
+    }
+
+    /**
+     * Getter: comment for use by refund.
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->getParameter('comment');
+    }
+
+    /**
+     * Setter: category for use by refund.
+     *
+     * @param $value
+     *
+     * @return BaseAbstractRequest
+     */
+    public function setComment($value)
+    {
+        return $this->setParameter('comment', $value);
+    }
+
+    public function getAmount()
+    {
+        return parent::getAmount();
+    }
+
+    public function setAmount($value)
+    {
+        return parent::setAmount($value);
+    }
+
+    public function getCurrency()
+    {
+        return parent::getCurrency();
+    }
+
+    public function setCurrency($value)
+    {
+        return parent::setCurrency($value);
+    }
 }

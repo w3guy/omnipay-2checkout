@@ -92,7 +92,9 @@ class TokenGateway extends AbstractGateway
     }
 
     /**
-     * @return Message\PurchaseRequest
+     * @param array $parameters
+     *
+     * @return \Omnipay\Common\Message\AbstractRequest
      */
     public function purchase(array $parameters = array())
     {
