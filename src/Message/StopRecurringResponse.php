@@ -50,6 +50,8 @@ class StopRecurringResponse extends AbstractResponse implements ResponseInterfac
      */
     public function getMessage()
     {
-        return isset($this->data['response_message']) ? $this->data['response_message'] : json_encode($this->data['errors']);
+        return isset($this->data['response_message']) ?
+            $this->data['response_message'] :
+            json_encode($this->data['errors']);
     }
 }
