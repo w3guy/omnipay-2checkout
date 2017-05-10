@@ -301,7 +301,7 @@ class Gateway extends AbstractGateway
      *
      * @param $value
      *
-     * @return BaseAbstractRequest
+     * @return $this
      */
     public function setCategory($value)
     {
@@ -328,6 +328,28 @@ class Gateway extends AbstractGateway
     public function setComment($value)
     {
         return $this->setParameter('comment', $value);
+    }
+
+    /**
+     * Setter: lineitem_id for use by stop recurring.
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setLineItemId($value)
+    {
+        return $this->setParameter('lineItemId', $value);
+    }
+
+    /**
+     * Getter: lineitem_id for use by stop recurring.
+     *
+     * @return string
+     */
+    public function getLineItemId()
+    {
+        return $this->getParameter('lineItemId');
     }
 
     public function getAmount()
@@ -375,6 +397,16 @@ class Gateway extends AbstractGateway
     public function refund(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\TwoCheckoutPlus\Message\RefundRequest', $parameters);
+    }
+
+    public function fetchSaleDetails(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\TwoCheckoutPlus\Message\DetailSaleRequest', $parameters);
+    }
+
+    public function stopRecurring(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\TwoCheckoutPlus\Message\StopRecurringRequest', $parameters);
     }
 
     /**

@@ -210,6 +210,28 @@ abstract class AbstractRequest extends BaseAbstractRequest
     }
 
     /**
+     * Setter: lineitem_id for use by stop recurring.
+     *
+     * @param $value
+     *
+     * @return BaseAbstractRequest
+     */
+    public function setLineItemId($value)
+    {
+        return $this->setParameter('lineItemId', $value);
+    }
+
+    /**
+     * Getter: lineitem_id for use by stop recurring.
+     *
+     * @return string
+     */
+    public function getLineItemId()
+    {
+        return $this->getParameter('lineItemId');
+    }
+
+    /**
      * Setter: category for use by refund.
      *
      * @param $value

@@ -1,0 +1,9 @@
+{
+  "errors": [
+    {
+      "code": "PARAMETER_MISSING",
+      "message": "Required parameter missing: sale_or_invoice_id",
+      "parameter": "sale_or_invoice_id"
+    }
+  ]
+}

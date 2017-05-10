@@ -9,10 +9,10 @@ use Guzzle\Http\Exception\BadResponseException;
  *
  * @method PurchaseResponse send()
  */
-class RefundRequest extends AbstractRequest
+class StopRecurringRequest extends AbstractRequest
 {
-    protected $liveEndpoint = 'https://www.2checkout.com/api/sales/refund_invoice';
-    protected $testEndpoint = 'https://sandbox.2checkout.com/api/sales/refund_invoice';
+    protected $liveEndpoint = 'https://www.2checkout.com/api/sales/stop_lineitem_recurring';
+    protected $testEndpoint = 'https://sandbox.2checkout.com/api/sales/stop_lineitem_recurring';
 
     /**
      * Get appropriate 2checkout endpoints.
@@ -43,29 +43,13 @@ class RefundRequest extends AbstractRequest
 
     public function getData()
     {
-        $this->validate('adminUsername', 'adminPassword', 'saleId', 'comment');
+        $this->validate('adminUsername', 'adminPassword', 'lineItemId');
 
         $data = array();
         $data['admin_username'] = $this->getAdminUsername();
         $data['admin_password'] = $this->getAdminPassword();
 
-        $data['sale_id'] = $this->getSaleId();
-        $data['invoice_id'] = $this->getInvoiceId();
-        $data['amount'] = $this->getParameter('amount');
-        $data['currency'] = $this->getCurrency();
-        $data['comment'] = 'Buyer deserved a refund';
-        $data['category'] = 10;
-
-        // override default category value of 10.
-        // see https://www.2checkout.com/documentation/api/sales/refund-invoice
-        if ($this->getCategory()) {
-            $data['category'] = $this->getCategory();
-        }
-
-        // override default comment
-        if ($this->getComment()) {
-            $data['category'] = $this->getComment();
-        }
+        $data['lineitem_id'] = $this->getLineItemId();
 
         // needed to determine which API endpoint to use in OffsiteResponse
         if ($this->getTestMode()) {
@@ -86,7 +70,7 @@ class RefundRequest extends AbstractRequest
     /**
      * @param mixed $data
      *
-     * @return RefundResponse
+     * @return StopRecurringResponse
      */
     public function sendData($data)
     {
@@ -101,11 +85,11 @@ class RefundRequest extends AbstractRequest
                 $payload
             )->setAuth($data['admin_username'], $data['admin_password'])->send();
 
-            return new RefundResponse($this, $response->json());
+            return new StopRecurringResponse($this, $response->json());
         } catch (BadResponseException $e) {
             $response = $e->getResponse();
 
-            return new RefundResponse($this, $response->json());
+            return new StopRecurringResponse($this, $response->json());
         }
     }
 }
