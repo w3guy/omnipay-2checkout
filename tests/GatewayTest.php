@@ -84,13 +84,13 @@ class GatewayTest extends GatewayTestCase
 
     public function testRefund()
     {
-        $request = $this->gateway->refund([
+        $request = $this->gateway->refund(array(
             'adminUsername' => 'username',
             'adminPassword' => 'password',
             'saleId' => 106235469964,
             'comment' => 'Buyer deserved a refund',
             'category' => 13
-        ])->send();
+        ))->send();
 
         $this->assertSame(false, $request->isSuccessful());
         $this->assertSame(false, $request->isRedirect());

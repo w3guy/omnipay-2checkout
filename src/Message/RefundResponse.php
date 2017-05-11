@@ -49,4 +49,20 @@ class RefundResponse extends AbstractResponse implements ResponseInterface
             $this->data['response_message'] :
             json_encode($this->data['errors']);
     }
+
+    /**
+     * Return the first error message in the error basket.
+     */
+    public function getFirstErrorMessage()
+    {
+        return $this->data['errors'][0]['message'];
+    }
+
+    /**
+     * Return the first error message in the error basket.
+     */
+    public function getFirstErrorCode()
+    {
+        return $this->data['errors'][0]['code'];
+    }
 }
