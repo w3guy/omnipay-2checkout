@@ -210,6 +210,18 @@ abstract class AbstractRequest extends BaseAbstractRequest
     }
 
     /**
+     * Setter: category for use by refund.
+     *
+     * @param $value
+     *
+     * @return BaseAbstractRequest
+     */
+    public function setComment($value)
+    {
+        return $this->setParameter('comment', $value);
+    }
+
+    /**
      * Setter: lineitem_id for use by stop recurring.
      *
      * @param $value
@@ -229,18 +241,6 @@ abstract class AbstractRequest extends BaseAbstractRequest
     public function getLineItemId()
     {
         return $this->getParameter('lineItemId');
-    }
-
-    /**
-     * Setter: category for use by refund.
-     *
-     * @param $value
-     *
-     * @return BaseAbstractRequest
-     */
-    public function setComment($value)
-    {
-        return $this->setParameter('comment', $value);
     }
 
     public function getAmount()

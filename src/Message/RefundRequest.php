@@ -64,7 +64,12 @@ class RefundRequest extends AbstractRequest
 
         // override default comment
         if ($this->getComment()) {
-            $data['category'] = $this->getComment();
+            $data['comment'] = $this->getComment();
+        }
+
+        // override default comment
+        if (strlen($this->getCurrency()) > 3) {
+            $data['currency'] = strtolower($this->getCurrency());
         }
 
         // needed to determine which API endpoint to use in OffsiteResponse
