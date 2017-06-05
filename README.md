@@ -28,6 +28,143 @@ The following gateways are provided by this package:
 
  * TwoCheckoutPlus
  * TwoCheckoutPlus_Token
+ 
+### TwoCheckoutPlus
+``` php
+
+use Omnipay\Omnipay;
+
+$gateway = Omnipay::create('TwoCheckoutPlus');
+$gateway->setAccountNumber($this->account_number);
+$gateway->setSecretWord($this->secret_word);
+$gateway->setTestMode($this->is_sandbox_test());
+// activate test mode by passing demo parameter to checkout parameters.
+$gateway->setDemoMode($this->is_test_mode());
+
+
+try {
+    $formData = array(
+        'firstName' => $order->get_billing_first_name(),
+        'lastName' => $order->get_billing_last_name(),
+        'email' => $order->get_billing_email(),
+        'address1' => $order->get_billing_address_1(),
+        'address2' => $order->get_billing_address_2(),
+        'city' => $order->get_billing_city(),
+        'state' => $order->get_billing_state(),
+        'postcode' => $order->get_billing_postcode(),
+        'country' => $order->get_billing_country(),
+    );
+
+    $order_cart = $order->get_items();
+
+    $cart = array();
+
+    $i = 0;
+    foreach ($order_cart as $order_item_id => $product) {
+        $product_id = $product['product_id'];
+        $cart[$i]['name'] = $product['name'];
+        $cart[$i]['quantity'] = $product['qty'];
+        $cart[$i]['type'] = 'product';
+        $cart[$i]['price'] = round($product['line_subtotal'] / $product['qty'], 2);
+        $cart[$i]['product_id'] = $product_id;
+
+        $i++;
+    }
+
+    if (($shipping_total = $order->get_shipping_total()) > 0) {
+        $cart[] = array(
+            'name' => 'Shipping Fee',
+            'quantity' => 1,
+            'type' => 'shipping',
+            'price' => round($shipping_total, 2),
+        );
+    }
+
+    if (($discount_total = $order->get_total_discount()) > 0) {
+        $cart[] = array(
+            'name' => 'Discount',
+            'quantity' => 1,
+            'type' => 'coupon',
+            'price' => round($discount_total, 2),
+        );
+    }
+
+    if (($tax_total = $order->get_total_tax()) > 0) {
+        $cart[] = array(
+            'name' => 'Tax Fee',
+            'type' => 'tax',
+            'quantity' => 1,
+            'price' => round($tax_total, 2),
+        );
+    }
+
+    $gateway->setCart($cart);
+
+    $response = $gateway->purchase(
+        array(
+            'card' => $formData,
+            'transactionId' => $order->get_order_number(),
+            'currency' => 'USD,
+            // add a query parameter to the returnUrl to listen and complete payment
+            'returnUrl' => $this->returnUrl,
+        )
+    )->send();
+
+
+    if ($response->isRedirect()) {
+        $response->getRedirectUrl();
+
+    } else {
+        $error = $response->getMessage();
+    }
+} catch (Exception $e) {
+    $e->getMessage();
+}
+```
+
+### TwoCheckoutPlus_Token
+
+``` php
+use Omnipay\Omnipay;
+
+try {
+    $gateway = Omnipay::create('TwoCheckoutPlus_Token');
+    $gateway->setAccountNumber($this->account_number);
+    $gateway->setTestMode($this->is_sandbox_test());
+    $gateway->setPrivateKey($this->private_key);
+
+    $formData = array(
+        'firstName' => $order->get_billing_first_name(),
+        'lastName' => $order->get_billing_last_name(),
+        'email' => $order->get_billing_email(),
+        'billingAddress1' => $order->get_billing_address_1(),
+        'billingAddress2' => $order->get_billing_address_2(),
+        'billingCity' => $order->get_billing_city(),
+        'billingPostcode' => $order->get_billing_postcode(),
+        'billingState' => $order->get_billing_state(),
+        'billingCountry' => $order->get_billing_country(),
+    );
+
+
+    $purchase_request_data = array(
+        'card' => $formData,
+        'token' => sanitize_text_field($_POST['twocheckout_token']),
+        'transactionId' => $order->get_order_number(),
+        'currency' => 'USD',
+        'amount' => $order->order_total,
+    );
+
+    $response = $gateway->purchase($purchase_request_data)->send();
+
+    if ($response->isSuccessful()) {
+        $transaction_ref = $response->getTransactionReference();
+    } else {
+        $error = $response->getMessage();
+    }
+} catch (Exception $e) {
+    $e->getMessage();
+}
+```
 
 For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay) repository.
 
