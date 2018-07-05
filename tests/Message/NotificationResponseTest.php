@@ -20,6 +20,7 @@ class NotificationResponseTest extends TestCase
         $this->assertTrue($response->getTransactionStatus());
         $this->assertSame($data, $response->getMessage());
     }
+    
     public function testResponsePass()
     {
         $data = $this->getMockHttpResponse('FraudChangeNotificationPass.txt')->json();
@@ -44,4 +45,16 @@ class NotificationResponseTest extends TestCase
 
         $this->assertTrue($response->getTransactionStatus());
     }
+
+	public function testResponseNoData()
+	{
+		$data = array();
+		$response = new NotificationResponse($this->getMockRequest(), $data);
+
+		$this->assertFalse($response->isSuccessful());
+		$this->assertSame(null, $response->getTransactionReference());
+		$this->assertSame(null, $response->getTransactionId());
+		$this->assertSame(null, $response->getNotificationType());
+		$this->assertTrue($response->getTransactionStatus());
+	}
 }
