@@ -104,7 +104,7 @@ try {
         array(
             'card' => $formData,
             'transactionId' => $order->get_order_number(),
-            'currency' => 'USD,
+            'currency' => 'USD',
             // add a query parameter to the returnUrl to listen and complete payment
             'returnUrl' => $this->returnUrl,
         )
