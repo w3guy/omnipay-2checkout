@@ -8,18 +8,27 @@ use Omnipay\Common\Message\AbstractResponse;
 class NotificationResponse extends AbstractResponse implements NotificationInterface
 {
     /**
-     * Is the notification harsh correct after validation?
-     */
+	 * Is the notification hash correct after validation?
+	 */
     public function isSuccessful()
     {
-        # Validate the Hash
-        $hashSecretWord = $this->data['secretWord']; # Input your secret word
-        $hashSid = $this->data['accountNumber']; #Input your seller ID (2Checkout account number)
-        $hashOrder = $this->data['sale_id'];
-        $hashInvoice = $this->data['invoice_id'];
-        $StringToHash = strtoupper(md5($hashOrder.$hashSid.$hashInvoice.$hashSecretWord));
+        // Validate the Hash
+        $hashSecretWord = isset($this->data['secretWord'])    ? $this->data['secretWord']    : null;
+        $hashSid        = isset($this->data['accountNumber']) ? $this->data['accountNumber'] : null;
+        $hashOrder      = isset($this->data['sale_id'])       ? $this->data['sale_id']       : null;
+        $hashInvoice    = isset($this->data['invoice_id'])    ? $this->data['invoice_id']    : null;
+        $md5_hash       = isset($this->data['md5_hash'])      ? $this->data['md5_hash']      : null;
 
-        return $StringToHash == $this->data['md5_hash'];
+        // if no value has been posted, it has no way to be valid
+        if ($hashSecretWord === null || $hashSid === null ||
+            $hashOrder === null || $hashInvoice === null ||
+            $md5_hash === null) {
+            return false;
+        }
+        
+        $StringToHash = strtoupper(md5($hashOrder.$hashSid.$hashInvoice.$hashSecretWord));
+        
+        return (string)$StringToHash == (string)$md5_hash;
     }
 
     /**
@@ -29,7 +38,7 @@ class NotificationResponse extends AbstractResponse implements NotificationInter
      */
     public function getTransactionReference()
     {
-        return $this->data['sale_id'];
+        return isset($this->data['sale_id']) ? $this->data['sale_id'] : null;
     }
 
     /**
@@ -39,7 +48,7 @@ class NotificationResponse extends AbstractResponse implements NotificationInter
      */
     public function getTransactionId()
     {
-        return $this->data['vendor_order_id'];
+         return isset($this->data['vendor_order_id']) ? $this->data['vendor_order_id'] : null;
     }
 
     /**
@@ -49,7 +58,7 @@ class NotificationResponse extends AbstractResponse implements NotificationInter
      */
     public function getNotificationType()
     {
-        return $this->data['message_type'];
+         return isset($this->data['message_type']) ? $this->data['message_type'] : null;
     }
 
     /**
