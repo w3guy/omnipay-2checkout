@@ -19,7 +19,7 @@ class NotificationResponse extends AbstractResponse implements NotificationInter
         $hashInvoice = $this->data['invoice_id'];
         $StringToHash = strtoupper(md5($hashOrder.$hashSid.$hashInvoice.$hashSecretWord));
 
-        return $StringToHash == $this->data['md5_hash'];
+        return $StringToHash === $this->data['md5_hash'];
     }
 
     /**

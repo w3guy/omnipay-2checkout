@@ -3,6 +3,9 @@
 namespace Omnipay\TwoCheckoutPlus\Message;
 
 use Guzzle\Http\Exception\BadResponseException;
+use Omnipay\Common\Exception\InvalidRequestException;
+use Omnipay\Common\Http\Exception\NetworkException;
+use Omnipay\Common\Http\Exception\RequestException;
 
 /**
  * Purchase Request.
@@ -28,7 +31,7 @@ class TokenPurchaseRequest extends AbstractRequest
 
     public function isNotNull($value)
     {
-        return !is_null($value);
+        return $value !== null;
     }
 
     /**
@@ -38,22 +41,23 @@ class TokenPurchaseRequest extends AbstractRequest
      */
     public function getRequestHeaders()
     {
-        return array(
+        return [
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
-        );
+            'Authorization' => 'Basic ' . base64_encode($this->getAdminUsername() . ':' . $this->getAdminPassword()),
+        ];
     }
 
     /**
      * @return array
      *
-     * @throws \Omnipay\Common\Exception\InvalidRequestException
+     * @throws InvalidRequestException
      */
     public function getData()
     {
         $this->validate('accountNumber', 'privateKey', 'token', 'amount', 'transactionId');
 
-        $data = array();
+        $data = [];
         $data['sellerId'] = $this->getAccountNumber();
         $data['privateKey'] = $this->getPrivateKey();
         $data['merchantOrderId'] = $this->getTransactionId();
@@ -98,17 +102,18 @@ class TokenPurchaseRequest extends AbstractRequest
     public function sendData($data)
     {
         try {
-            $response = $this->httpClient->post(
+            $response = $this->httpClient->request(
+                'POST',
                 $this->getEndpoint(),
                 $this->getRequestHeaders(),
                 json_encode($data)
-            )->send();
+            );
 
-            return new TokenPurchaseResponse($this, $response->json());
-        } catch (BadResponseException $e) {
-            $response = $e->getResponse();
+            $json = json_decode($response->getBody()->getContents(), true);
 
-            return new TokenPurchaseResponse($this, $response->json());
+            return new TokenPurchaseResponse($this, $json ?? []);
+        } catch (RequestException|NetworkException $e) {
+            return new TokenPurchaseResponse($this, ['error' => $e->getMessage()]);
         }
     }
 }

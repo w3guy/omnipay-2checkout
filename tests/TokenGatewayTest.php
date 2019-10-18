@@ -2,10 +2,8 @@
 
 namespace Omnipay\TwoCheckoutPlus;
 
+use GuzzleHttp\Psr7\Response;
 use Omnipay\Tests\GatewayTestCase;
-use \Guzzle\Plugin\Mock\MockPlugin;
-use Guzzle\Http\Message\Response;
-use Omnipay\TwoCheckoutPlus\Message\TokenPurchaseRequest;
 
 class TokenGatewayTest extends GatewayTestCase
 {
@@ -17,48 +15,46 @@ class TokenGatewayTest extends GatewayTestCase
     {
         parent::setUp();
 
-        $mock = new MockPlugin();
-        $body = file_get_contents(dirname(__FILE__) . '/Mock/TokenPurchaseSuccess.txt');
-        $mock->addResponse(new Response(200, array('Content-Type' => 'application/json'), $body))
-            // alternate style of getting mock response. See how both txt file varies.
-            ->addResponse($this->getMockHttpResponse('TokenPurchaseFailure.txt'));
+        $mock = $this->getMockClient();
+        $body = file_get_contents(__DIR__ . '/Mock/TokenPurchaseSuccess.txt');
+        $mock->addResponse(new Response(200, ['Content-Type' => 'application/json'], $body));
+        $mock->addResponse($this->getMockHttpResponse('TokenPurchaseFailure.txt'));
 
         // Add the mock plugin to the client object
         $httpClient = $this->getHttpClient();
-        $httpClient->addSubscriber($mock);
 
         $this->gateway = new TokenGateway($httpClient, $this->getHttpRequest());
-        $this->options = array(
+        $this->options = [
             'card' => $this->getValidCard(),
             'token' => 'Y2RkZDdjN2EtNjFmZS00ZGYzLWI4NmEtNGZhMjI3NmExMzQ0',
             'transactionId' => '123456',
             'currency' => 'USD',
             'amount' => '20.5'
-        );
+        ];
 
         $this->gateway->setAccountNumber('801290261');
         $this->gateway->setTestMode(true);
         $this->gateway->setPrivateKey('5F876A36-D506-4E1F-8EE9-DA2358500F9C');
 
         $this->gateway->setCart(
-            array(
-                array(
+            [
+                [
                     "name" => "Demo Item",
                     "price" => "4.99",
                     "type" => "product",
                     "quantity" => "1",
                     "recurrence" => "4 Year",
                     "startupFee" => "9.99"
-                ),
-                array(
+                ],
+                [
                     "name" => "Demo Item 2",
                     "price" => "6.99",
                     "type" => "product",
                     "quantity" => "2",
                     "recurrence" => "8 Year",
                     "startupFee" => "19.99"
-                )
-            )
+                ]
+            ]
         );
     }
 

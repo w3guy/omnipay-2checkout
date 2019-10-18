@@ -3,6 +3,8 @@
 namespace Omnipay\TwoCheckoutPlus;
 
 use Omnipay\Common\AbstractGateway;
+use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\TwoCheckoutPlus\Message\TokenPurchaseRequest;
 
 /**
  * 2Checkout Token Gateway.
@@ -94,10 +96,10 @@ class TokenGateway extends AbstractGateway
     /**
      * @param array $parameters
      *
-     * @return \Omnipay\Common\Message\AbstractRequest
+     * @return AbstractRequest
      */
     public function purchase(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\TwoCheckoutPlus\Message\TokenPurchaseRequest', $parameters);
+        return $this->createRequest(TokenPurchaseRequest::class, $parameters);
     }
 }

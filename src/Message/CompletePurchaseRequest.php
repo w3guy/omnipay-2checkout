@@ -36,7 +36,7 @@ class CompletePurchaseRequest extends PurchaseRequest
         }
 
         $key = md5($this->getSecretWord().$this->getAccountNumber().$orderNo.$orderAmount);
-        if (strtolower($this->httpRequest->$request_type->get('key')) !== $key) {
+        if (!hash_equals($key, strtolower($this->httpRequest->$request_type->get('key')))) {
             throw new InvalidResponseException('Invalid key');
         }
 
