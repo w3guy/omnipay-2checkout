@@ -15,10 +15,11 @@
         }
     ],
     "require": {
-        "omnipay/common": "~2.0"
+        "omnipay/common": "^3.0",
+      "ext-json": "*"
     },
     "require-dev": {
-        "omnipay/tests": "~2.0",
+        "omnipay/tests": "^3.0",
         "satooshi/php-coveralls": "^0.7.1"
     },
     "autoload": {
@@ -36,7 +37,8 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "1.0.x-dev": "1.0-dev",
+            "dev-master": "3.0.x-dev"
         }
     }
 }

@@ -22,9 +22,9 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
     {
         if ($this->data['sandbox']) {
             return $this->testEndpoint;
-        } else {
-            return $this->liveEndpoint;
         }
+
+        return $this->liveEndpoint;
     }
 
     /**

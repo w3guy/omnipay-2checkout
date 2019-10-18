@@ -1,6 +1,7 @@
 <?php
 namespace Omnipay\TwoCheckoutPlus\Message;
 
+use Omnipay\Common\Http\Client;
 use Omnipay\Tests\TestCase;
 
 class TokenPurchaseRequestTest extends TestCase
@@ -12,11 +13,8 @@ class TokenPurchaseRequestTest extends TestCase
     {
         parent::setUp();
 
-        $mock = new \Guzzle\Plugin\Mock\MockPlugin();
-        $mock->addResponse($this->getMockHttpResponse('TokenPurchaseFailure.txt'));
-
+        /** @var Client $httpClient */
         $httpClient = $this->getHttpClient();
-        $httpClient->addSubscriber($mock);
 
         $this->request = new TokenPurchaseRequest($httpClient, $this->getHttpRequest());
         $this->request->initialize(array(
@@ -35,24 +33,24 @@ class TokenPurchaseRequestTest extends TestCase
     public function testGetSetCart()
     {
         $this->request->setCart(
-            array(
-                array(
+            [
+                [
                     "name" => "Demo Item",
                     "price" => "4.99",
                     "type" => "product",
                     "quantity" => "1",
                     "recurrence" => "4 Year",
                     "startupFee" => "9.99"
-                ),
-                array(
+                ],
+                [
                     "name" => "Demo Item 2",
                     "price" => "6.99",
                     "type" => "product",
                     "quantity" => "2",
                     "recurrence" => "8 Year",
                     "startupFee" => "19.99"
-                )
-            )
+                ]
+            ]
         );
 
         $cart = $this->request->getCart();
@@ -72,7 +70,7 @@ class TokenPurchaseRequestTest extends TestCase
     {
         $data = $this->request->getData();
         $response = $this->request->sendData($data);
-        $this->assertSame('Omnipay\TwoCheckoutPlus\Message\TokenPurchaseResponse', get_class($response));
+        $this->assertInstanceOf(\Omnipay\TwoCheckoutPlus\Message\TokenPurchaseResponse::class, $response);
     }
 
 }

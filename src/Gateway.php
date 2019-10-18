@@ -3,6 +3,13 @@
 namespace Omnipay\TwoCheckoutPlus;
 
 use Omnipay\Common\AbstractGateway;
+use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\TwoCheckoutPlus\Message\PurchaseRequest;
+use Omnipay\TwoCheckoutPlus\Message\RefundRequest;
+use Omnipay\TwoCheckoutPlus\Message\DetailSaleRequest;
+use Omnipay\TwoCheckoutPlus\Message\StopRecurringRequest;
+use Omnipay\TwoCheckoutPlus\Message\CompletePurchaseRequest;
+use Omnipay\TwoCheckoutPlus\Message\NotificationRequest;
 
 /**
  * 2Checkout Gateway.
@@ -120,8 +127,6 @@ class Gateway extends AbstractGateway
 
     /**
      * Getter: purchase step.
-     *
-     * @param $value
      *
      * @return $this
      */
@@ -387,45 +392,45 @@ class Gateway extends AbstractGateway
     /**
      * @param array $parameters
      *
-     * @return \Omnipay\Common\Message\AbstractRequest
+     * @return AbstractRequest
      */
     public function purchase(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\TwoCheckoutPlus\Message\PurchaseRequest', $parameters);
+        return $this->createRequest(PurchaseRequest::class, $parameters);
     }
 
     public function refund(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\TwoCheckoutPlus\Message\RefundRequest', $parameters);
+        return $this->createRequest(RefundRequest::class, $parameters);
     }
 
     public function fetchSaleDetails(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\TwoCheckoutPlus\Message\DetailSaleRequest', $parameters);
+        return $this->createRequest(DetailSaleRequest::class, $parameters);
     }
 
     public function stopRecurring(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\TwoCheckoutPlus\Message\StopRecurringRequest', $parameters);
+        return $this->createRequest(StopRecurringRequest::class, $parameters);
     }
 
     /**
      * @param array $parameters
      *
-     * @return \Omnipay\Common\Message\AbstractRequest
+     * @return AbstractRequest
      */
     public function completePurchase(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\TwoCheckoutPlus\Message\CompletePurchaseRequest', $parameters);
+        return $this->createRequest(CompletePurchaseRequest::class, $parameters);
     }
 
     /**
      * @param array $parameters
      *
-     * @return \Omnipay\Common\Message\AbstractRequest
+     * @return AbstractRequest
      */
     public function acceptNotification(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\TwoCheckoutPlus\Message\NotificationRequest', $parameters);
+        return $this->createRequest(NotificationRequest::class, $parameters);
     }
 }

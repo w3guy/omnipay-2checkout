@@ -8,7 +8,7 @@ class NotificationResponseTest extends TestCase
 {
     public function testResponseFail()
     {
-        $data = $this->getMockHttpResponse('FraudChangeNotificationFail.txt')->json();
+        $data = json_decode($this->getMockHttpResponse('FraudChangeNotificationFail.txt')->getBody()->getContents(), true);
         $data['accountNumber'] = '901290261';
         $data['secretWord'] = 'MzBjODg5YTUtNzcwMS00N2NlLWFkODMtNzQ2YzllZWRjMzBj';
         $response     = new NotificationResponse($this->getMockRequest(), $data);
@@ -22,7 +22,7 @@ class NotificationResponseTest extends TestCase
     }
     public function testResponsePass()
     {
-        $data = $this->getMockHttpResponse('FraudChangeNotificationPass.txt')->json();
+        $data = json_decode($this->getMockHttpResponse('FraudChangeNotificationPass.txt')->getBody()->getContents(), true);
         $data['accountNumber'] = '901290261';
         $data['secretWord'] = 'MzBjODg5YTUtNzcwMS00N2NlLWFkODMtNzQ2YzllZWRjMzBj';
         $response     = new NotificationResponse($this->getMockRequest(), $data);
@@ -36,7 +36,7 @@ class NotificationResponseTest extends TestCase
     }
 
     public function testForResponseOtherThanFraudReview() {
-        $data = $this->getMockHttpResponse('FraudChangeNotificationPass.txt')->json();
+        $data = json_decode($this->getMockHttpResponse('FraudChangeNotificationPass.txt')->getBody()->getContents(), true);
         $data['accountNumber'] = '901290261';
         $data['secretWord'] = 'MzBjODg5YTUtNzcwMS00N2NlLWFkODMtNzQ2YzllZWRjMzBj';
         $data['message_type'] = 'INVOICE_STATUS_CHANGED';

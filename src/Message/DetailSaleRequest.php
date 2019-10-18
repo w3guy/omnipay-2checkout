@@ -2,7 +2,8 @@
 
 namespace Omnipay\TwoCheckoutPlus\Message;
 
-use Guzzle\Http\Exception\BadResponseException;
+use Omnipay\Common\Http\Exception\NetworkException;
+use Omnipay\Common\Http\Exception\RequestException;
 
 /**
  * Purchase Request.
@@ -31,21 +32,17 @@ class DetailSaleRequest extends AbstractRequest
      */
     public function getRequestHeaders()
     {
-        return array(
+        return [
             'Accept' => 'application/json',
-        );
-    }
-
-    public function isNotNull($value)
-    {
-        return !is_null($value);
+            'Authorization' => 'Basic ' . base64_encode($this->getAdminUsername() . ':' . $this->getAdminPassword())
+        ];
     }
 
     public function getData()
     {
         $this->validate('adminUsername', 'adminPassword');
 
-        $data = array();
+        $data = [];
         $data['admin_username'] = $this->getAdminUsername();
         $data['admin_password'] = $this->getAdminPassword();
 
@@ -58,7 +55,7 @@ class DetailSaleRequest extends AbstractRequest
         }
 
         $data = array_filter($data, function ($value) {
-            return !is_null($value);
+            return $value !== null;
         });
 
         // remove unwanted data
@@ -76,8 +73,7 @@ class DetailSaleRequest extends AbstractRequest
     public function sendData($data)
     {
         $payload = $data;
-        unset($payload['admin_username']);
-        unset($payload['admin_password']);
+        unset($payload['admin_username'], $payload['admin_password']);
 
         $query = '';
         if (!empty($payload['invoice_id'])) {
@@ -89,16 +85,17 @@ class DetailSaleRequest extends AbstractRequest
         }
 
         try {
-            $response = $this->httpClient->get(
+            $response = $this->httpClient->request(
+                'GET',
                 $this->getEndpoint() . $query,
                 $this->getRequestHeaders()
-            )->setAuth($data['admin_username'], $data['admin_password'])->send();
+            );
 
-            return new DetailSaleResponse($this, $response->json());
-        } catch (BadResponseException $e) {
-            $response = $e->getResponse();
+            $json = json_decode($response->getBody()->getContents(), true);
 
-            return new DetailSaleResponse($this, $response->json());
+            return new DetailSaleResponse($this, $json ?? []);
+        } catch (RequestException|NetworkException $e) {
+            return new DetailSaleResponse($this, ['error' => $e->getMessage()]);
         }
     }
 }

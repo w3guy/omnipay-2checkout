@@ -8,7 +8,7 @@ class TokenPurchaseResponseTest extends TestCase
 {
     public function testSuccess()
     {
-        $body         = file_get_contents(dirname(dirname(__FILE__)) . '/Mock/TokenPurchaseSuccess.txt');
+        $body         = file_get_contents(dirname(__FILE__, 2) . '/Mock/TokenPurchaseSuccess.txt');
         $httpResponse = new Response(200, array('Content-Type' => 'application/json'), $body);
         $response     = new TokenPurchaseResponse($this->getMockRequest(), $httpResponse->json());
 
@@ -22,7 +22,7 @@ class TokenPurchaseResponseTest extends TestCase
     public function testFailure()
     {
         $httpResponse = $this->getMockHttpResponse('TokenPurchaseFailure.txt');
-        $response     = new TokenPurchaseResponse($this->getMockRequest(), $httpResponse->json());
+        $response     = new TokenPurchaseResponse($this->getMockRequest(), json_decode($httpResponse->getBody()->getContents(), true));
 
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
