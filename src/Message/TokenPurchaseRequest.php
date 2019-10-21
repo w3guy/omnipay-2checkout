@@ -78,7 +78,14 @@ class TokenPurchaseRequest extends AbstractRequest
             // remove amount parameter if lineItem attributes / cart is set
             unset($data['total']);
 
-            $data['lineItems'] = $this->getCart();
+            $cartItems = $this->getCart();
+            foreach($cartItems as $item) {
+                $data['lineItems'] []= [
+                    'name' => $item->getName(),
+                    'quantity' => $item->getQuantity(),
+                    'price' => $item->getPrice()
+                ];
+            }
         }
 
         // remove null values item from $data['billingAddr']
